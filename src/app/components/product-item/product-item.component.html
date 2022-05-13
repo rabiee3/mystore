@@ -1,1 +1,18 @@
-<p>product-item works!</p>
+
+<div class="product-container">
+    <div class="product-image" (click)="navigateToProduct(product.id)">
+        <img class="w-100" [src]="imagePath" title="Product Image" />
+    </div>
+    <div class="mb-1 font-weight-bold">{{product.name}}</div>
+    <div class="mb-1">{{product.price | currency:'USD'}}</div>
+    <div>
+        <select class="select-input form-control" [(ngModel)]="selectedQuantity">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+        </select>
+    </div>
+    <button class="btn btn-primary mt-2" (click)="addToCart(product)">
+        Add to cart
+    </button>
+</div>

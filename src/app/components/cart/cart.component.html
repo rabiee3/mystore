@@ -1,1 +1,39 @@
-<p>cart works!</p>
+<div class="container mt-3">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="d-flex" *ngFor="let cartItem of cartData">
+        <div>
+          <img [src]="cartItem.img" />
+        </div>
+        <div>
+          <div class="font-weight-bold">{{ cartItem.name }}</div>
+          <div>{{ cartItem.price | currency:'USD' }}</div>
+          <div class="d-flex">Amount: <input class="mw-100px" type="number" min="1" value="{{ cartItem.quantity }}" (change)="changeQuantity($event,cartItem.id)" /></div>
+        </div>
+      </div>
+      <h6 *ngIf="cartData.length <= 0">Your Cart is Empty, Please Add Items</h6>
+      <h4 class="total">Total: {{totalPrice | currency:'USD'}}</h4>
+    </div>
+    <div class="col-md-6">
+
+            <div class="form-group">
+              <label for="fullname">Full Name</label>
+              <input [(ngModel)]="fullname" type="text" class="form-control" id="fullname" placeholder="Enter Full Name">
+            </div>
+
+            <div class="form-group">
+                <label for="address">Address</label>
+                <input [(ngModel)]="address" type="text" class="form-control" id="address" placeholder="Enter Address">
+            </div>
+
+            <div class="form-group">
+                <label for="fullname">Credit Card Number</label>
+                <input [(ngModel)]="creditcard" type="text" class="form-control" id="creditcard" placeholder="Enter Full Name">
+                <small id="creditHelp" class="form-text text-muted">We'll never share your credit card number with anyone else.</small>
+            </div>
+
+            <button type="submit" class="btn btn-primary" (click)="confirmPurchase()">Submit</button>
+
+    </div>
+  </div>
+</div>

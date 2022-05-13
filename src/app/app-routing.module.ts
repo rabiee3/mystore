@@ -6,8 +6,26 @@ import { ProductItemDetailComponent } from './components/product-item-detail/pro
 import { ProductItemComponent } from './components/product-item/product-item.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
 
-const routes: Routes = [];
-
+export const routes: Routes = [
+  {
+    path: 'home',
+    component: ProductListComponent,
+  },
+  {
+    path: 'product-details/:id',
+    component: ProductItemDetailComponent,
+  },
+  {
+    path: 'cart',
+    component: CartComponent,
+  },
+  {
+    path: 'confirm-order',
+    component: ConfirmationComponent,
+  },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '**', redirectTo: 'home' }
+];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
@@ -15,9 +33,9 @@ const routes: Routes = [];
 export class AppRoutingModule { }
 
 export const routedComponents = [
-  CartComponent,
-  ConfirmationComponent,
+  ProductListComponent,
   ProductItemComponent,
   ProductItemDetailComponent,
-  ProductListComponent
+  CartComponent,
+  ConfirmationComponent
 ];
