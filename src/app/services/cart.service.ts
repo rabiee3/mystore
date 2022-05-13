@@ -25,6 +25,10 @@ export class CartService {
         }
     }
 
+    removeFromCart(item:CartItem){
+        this.cartData = this.cartData.filter(x=>x.id !== item.id);
+    }
+
     changeQuantity(value:number,id:number){
         let itemFound = this.cartData.find(x=>x.id === id);
         itemFound.quantity = parseInt(value.toString());
