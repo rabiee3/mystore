@@ -1,9 +1,7 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import { BodyOutputType, Toast, ToasterService } from 'angular2-toaster';
 import { Product } from 'src/app/interfaces/Product';
-import { APIService } from 'src/app/services/api.service';
 import { CartService } from 'src/app/services/cart.service';
 
 
@@ -12,7 +10,7 @@ import { CartService } from 'src/app/services/cart.service';
   templateUrl: './product-item.component.html',
   styleUrls: ['./product-item.component.scss']
 })
-export class ProductItemComponent implements OnInit {
+export class ProductItemComponent implements OnInit,OnChanges {
 
   @Input() product:Product;
   @Output() productAdded = new EventEmitter<any>();
@@ -25,9 +23,13 @@ export class ProductItemComponent implements OnInit {
     private router:Router,
     private cartService:CartService) { }
 
-  ngOnInit(): void {
-    this.imagePath = this._sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' 
-    + this.product.img);
+  ngOnInit(): void {}
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if(this.product){
+      this.imagePath = this._sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' 
+      + this.product.img);
+    }
   }
 
   navigateToProduct(id) {

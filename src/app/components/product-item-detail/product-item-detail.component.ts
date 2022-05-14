@@ -11,7 +11,6 @@ import { APIService } from 'src/app/services/api.service';
 export class ProductItemDetailComponent implements OnInit {
 
   product:object;
-  productId:number;
   constructor(
     private actRoute:ActivatedRoute,
     private apiService:APIService,
@@ -20,9 +19,12 @@ export class ProductItemDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.actRoute.params.subscribe(params => {
-      this.productId = params['id'];
-      this.product = this.apiService.getProductById(this.productId);
+      this.updateProduct(params['id']);
     });
+  }
+
+  async updateProduct(id){
+    this.product = await this.apiService.getProductById(id);
   }
 
   onProductAdded(evt){
