@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BodyOutputType, Toast, ToasterService } from 'angular2-toaster';
+import { ActivatedRoute } from '@angular/router';
+import { APIService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-product-item-detail',
@@ -8,9 +10,19 @@ import { BodyOutputType, Toast, ToasterService } from 'angular2-toaster';
 })
 export class ProductItemDetailComponent implements OnInit {
 
-  constructor(private toasterService:ToasterService) { }
+  product:object;
+  productId:number;
+  constructor(
+    private actRoute:ActivatedRoute,
+    private apiService:APIService,
+    private toasterService:ToasterService
+    ) { }
 
   ngOnInit(): void {
+    this.actRoute.params.subscribe(params => {
+      this.productId = params['id'];
+      this.product = this.apiService.getProductById(this.productId);
+    });
   }
 
   onProductAdded(evt){
