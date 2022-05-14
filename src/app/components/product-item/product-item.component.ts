@@ -3,6 +3,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { BodyOutputType, Toast, ToasterService } from 'angular2-toaster';
 import { Product } from 'src/app/interfaces/Product';
+import { APIService } from 'src/app/services/api.service';
 import { CartService } from 'src/app/services/cart.service';
 
 
@@ -14,6 +15,8 @@ import { CartService } from 'src/app/services/cart.service';
 export class ProductItemComponent implements OnInit {
 
   @Input() product:Product;
+  @Input() isDetailed:boolean = false;
+  
   imagePath;
   selectedQuantity:number = 1;
   constructor(
