@@ -9,6 +9,7 @@ import { APIService } from './services/api.service';
 import { CartService } from './services/cart.service';
 import { ToasterService } from 'angular2-toaster';
 import {ToasterModule} from 'angular2-toaster';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import {ToasterModule} from 'angular2-toaster';
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
+    HttpClientModule,
     AppRoutingModule,
     ToasterModule.forRoot()
   ],

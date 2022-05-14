@@ -53,8 +53,8 @@ export class CartComponent implements OnInit {
     this.totalPrice = total;
   }
 
-  changeQuantity(evt,id){
-    this.cartService.changeQuantity(evt.target.value,id);
+  changeQuantity(value,id){
+    this.cartService.changeQuantity(value,id);
     this.refreshCartData();
     this.calculateTotal();
   }

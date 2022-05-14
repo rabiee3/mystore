@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BodyOutputType, Toast, ToasterService } from 'angular2-toaster';
 
 @Component({
   selector: 'app-product-item-detail',
@@ -7,9 +8,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductItemDetailComponent implements OnInit {
 
-  constructor() { }
+  constructor(private toasterService:ToasterService) { }
 
   ngOnInit(): void {
+  }
+
+  onProductAdded(evt){
+    if(evt){
+      const toast: Toast = {
+        type: 'success',
+        title: 'Item(s) Added To Cart',
+        body: '',
+        timeout: 2000,
+        showCloseButton: true,
+        bodyOutputType: BodyOutputType.TrustedHtml,
+      };
+      this.toasterService.popAsync(toast);
+    }
   }
 
 }

@@ -9,12 +9,12 @@ export class CartService {
 
     constructor(private apiService:APIService){}
 
-    addToCart(item:Product,quantity:number){
+    async addToCart(item:Product,quantity:number){
         let itemFound = this.cartData.find(x=>x.id === item.id);
         if(itemFound){
             itemFound.quantity += parseInt(quantity.toString());
         }else{
-            let result = this.apiService.getProductById(item.id);
+            let result = await this.apiService.getProductById(item.id);
             this.cartData.push({
                 id:result.id,
                 quantity:parseInt(quantity.toString()),
